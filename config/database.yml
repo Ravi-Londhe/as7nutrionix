@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: as6nutrionix_development
+  username: ravi
+  password: 123456
+
+test:
+  <<: *default
+  database: as6nutrionix_tracker_test
+  username: ravi
+  password: 123456
+
+production:
+  <<: *default
+  database: carb_tracker_production
+  username: carb_tracker
+  password: <%= ENV['CARB_TRACKER_DATABASE_PASSWORD'] %>
+  url:  <%= ENV["DATABASE_URL"] %>
+

@@ -1,0 +1,52 @@
+.inline-fields {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  input[type=number]{
+    width: 5em;
+  }
+
+  select {
+    margin-bottom: 0.375em;
+  }
+
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid $light-gray;
+}
+
+.add-entry {
+  margin-bottom: 1em;
+}
+
+#log-show-nav {
+  display: flex;
+  justify-content: space-between;
+
+  #log-show-manage, #log-history {
+    display: flex;
+  }
+
+  #log-show-manage p {
+    margin-right: 1em;
+  }
+
+  #log-history p {
+    margin-left: 1em;
+  }
+}
+
+#log-show-nav, #log-show-chart, #log-show-form {
+  border-bottom: 1px solid $light-gray;
+  margin-bottom: 2em;
+  padding-bottom: 2em;
+}
+
+#log-show-form div.inline-fields {
+  border: none;
+  padding: 0em 0.75em;
+  margin-bottom: 0;
+}
+

@@ -1,0 +1,22 @@
+en:
+  title: "Carb Tracker"
+  nav:
+    home: "Home"
+    log:
+      logs: "Food Log"
+      today: "Log Entry for Today"
+      new: "Other Log Entries"
+    recipes:
+      recipes: "Recipes"
+      new: "New Recipe"
+    users:
+      signin: "Sign In"
+      signup: "Sign Up"
+      signout: "Sign Out"
+  recipes:
+    search:
+      success: "Your search was successful!"
+  food:
+    search:
+      error: "Please provide a valid search term."
+

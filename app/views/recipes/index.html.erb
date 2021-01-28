@@ -1,0 +1,7 @@
+<h1>Recipes</h1>
+
+<p><%= link_to 'Create a New Recipe', new_recipe_path %></p>
+
+<div id="recipes-index">
+  <%= render partial: 'recipes', collection: @recipes || 'No recipes are available' %>
+</div>

@@ -1,0 +1,8 @@
+<section class="flash">
+  <% flash.each do |key, value| %>
+    <div class="flash-<%= key.to_s %>">
+      <span><%= value %></span>
+    </div>
+  <% end %>
+</section>
+

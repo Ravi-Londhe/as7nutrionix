@@ -1,0 +1,52 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "base/base";
+
+body {
+  header {
+    margin: 0;
+  }
+
+  main {
+    @include outer-container;
+    @include span-columns(12);
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.hero {
+  $large-screen: 50em !default;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(25, 25, 25, 0.10), rgba(50, 50, 50, 0.45)),
+    url("https://source.unsplash.com/1920x1080/daily?food,healthy");
+  background-position: right;
+  background-size: none;
+  display: flex;
+  justify-content: center;
+  min-height: 25em;
+  padding: 2em;
+
+  @include media($large-screen) {
+    background-position: left;
+    background-size: cover;
+    justify-content: flex-center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    text-align: center;
+
+    @include
+    media($large-screen) {
+      text-align: left;
+    }
+  }
+
+  .hero-logo
+  {
+    margin:
+    auto;
+  }
+}
+

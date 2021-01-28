@@ -1,0 +1,232 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "base/base";
+
+@import "refills/flashes";
+@import "refills/centered-navigation";
+@import "refills/tables";
+@import "refills/footer-2";
+
+@import "foods";
+@import "recipes";
+@import "users";
+@import "logs";
+
+@mixin section-bottom-margin() {
+  margin-bottom: 1em;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+
+  header {
+    @include section-bottom-margin;
+  }
+
+  main {
+    @include outer-container;
+    @include span-columns(10);
+    @include shift(1);
+    @include section-bottom-margin;
+  }
+
+  .flash {
+    @include outer-container;
+    @include span-columns(8);
+    @include shift(2);
+    @include section-bottom-margin;
+  }
+
+  section {
+    @include span-columns(10);
+    @include section-bottom-margin;
+  }
+}
+
+.wrapper-for-content-outside-of-footer {
+  overflow: auto;
+  padding-bottom: 4em;
+}
+
+.footer-2 {
+  display: block;
+
+  main {
+    margin-bottom: 0;
+
+    li {
+      color: white;
+    }
+  }
+}
+
+form label {
+  display: inline;
+}
+
+.field_with_errors input {
+  border-color: rgba(192, 57, 43, 1.0);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 5px rgba(192, 57, 43,1.0);
+}
+
+#error_explanation ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-left: 0;
+  padding-left: 0.75em;
+}
+
+tr.total {
+  font-weight: bold;
+}
+
+td.data {
+  text-align: right;
+  width: 10%;
+}
+
+td {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: visible;
+  // max-width: 1px;
+}
+
+table.recipe {
+  th:first-child {
+    width: 40%;
+  }
+
+  th:nth-child(2) {
+    width: 15%;
+  }
+  th:nth-child(3) {
+    width: 15%;
+  }
+  th:nth-child(4) {
+    width: 15%;
+  }
+  th:nth-child(5) {
+    width: 15%;
+  }
+}
+
+table.log {
+  th:first-child {
+    width: 40%;
+  }
+
+  th:nth-child(2) {
+    width: 10%;
+  }
+  th:nth-child(3) {
+    width: 10%;
+  }
+  th:nth-child(4) {
+    width: 10%;
+  }
+  th:nth-child(5) {
+    width: 10%;
+  }
+  th:nth-child(6) {
+    width: 10%;
+  }
+}
+
+fieldset {
+  border: 1px solid $light-gray;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+form {
+  .food-fields {
+    @include row();
+
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+
+    .food-details {
+      @include span-columns(6);
+    }
+
+    .food-nutrition {
+      @include span-columns(6);
+    }
+  }
+
+  .remove-food {
+    @include row();
+    @include span-columns(12);
+
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid $light-gray;
+  }
+}
+
+.stats {
+  $base-spacing: 1.5em !default;
+  $dark-gray: #333 !default;
+  $base-font-color: $dark-gray !default;
+  $action-color: #477dca !default;
+  $stats-color: lighten($action-color, 10%);
+
+  padding: $base-spacing / 2;
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    border-right: 1px solid
+    transparentize($base-font-color, 0.8);
+    color: $stats-color;
+    display: inline;
+    float: left;
+    font-size: 1.2em;
+    line-height: 1.1em;
+    padding: 0 0.7em;
+
+    &:first-child {
+      padding-left:
+      0;
+    }
+
+    &:last-child
+    {
+      border-right:
+      0;
+    }
+  }
+
+  span
+  {
+    color:
+    $base-font-color;
+    display:
+    block;
+    font-size:
+    0.7em;
+    font-weight:
+    normal;
+  }
+}
+
+.log-index {
+  @include row();
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chart {
+  margin-bottom: 1em;
+}
+
+
+

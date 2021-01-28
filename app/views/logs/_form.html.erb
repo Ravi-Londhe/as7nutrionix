@@ -1,0 +1,27 @@
+<%= form_for [@current_user, @log] do |f| %>
+  <%= render partial: "layouts/form_errors", locals: { form_errors: @log } %>
+
+  <%= f.hidden_field :id, value: "#{@log.id}" %>
+
+  <% if action_name == "today" %>
+    <h1>Today's Food Log for <%= date @log.log_date %> </h1>
+    <%= f.hidden_field :log_date, value: "#{@log.log_date}" %>
+  <% else %>
+    <%= f.label :log_date %>
+    <%= f.date_select :log_date, order: [:month, :day, :year] %>
+  <% end %>
+
+  <div id="entries">
+    <%= f.fields_for :entries do |entries| %>
+      <%= render "entry_fields", f: entries %>
+    <% end %>
+
+    <div class="links add-entry">
+      <%= link_to_add_association f, :entries, {"data-association-insertion-method": "before"}  do %>
+        <button>Add Entry</button>
+      <% end %>
+    </div>
+  </div>
+
+  <%= f.submit %>
+<% end %>

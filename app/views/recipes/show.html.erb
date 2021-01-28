@@ -1,0 +1,47 @@
+<h1><%= @recipe.title %></h1>
+
+<p>
+<%= link_to 'Edit Recipe', edit_recipe_path(@recipe) if policy(@recipe).edit? %>
+</p>
+<p>
+<%= link_to 'Destroy Recipe', recipe_path(@recipe), method: :delete,
+  data: { confirm: 'Are you sure?' } if policy(@recipe).destroy? %>
+</p>
+
+<p>Privacy Setting: <%= @recipe.privacy_setting %></p>
+
+
+<h2>Recipe Nutrition per Serving</h2>
+<table class='tables recipe'>
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Calories</th>
+      <th>Carbohydrate</th>
+      <th>Protein</th>
+      <th>Fat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'stats', collection: @recipe.per_ingredient_stats %>
+    <tr class='total'>
+      <td>Recipe Total</td>
+      <td class='data'><%= num @recipe.total_stats.total_calories %></td>
+      <td class='data'><%= num @recipe.total_stats.total_carbs %></td>
+      <td class='data'><%= num @recipe.total_stats.total_protein %></td>
+      <td class='data'><%= num @recipe.total_stats.total_fat %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>Recipe as Provided</h2>
+
+<p>Serving Size: <%= num @recipe.serving_size %></p>
+
+<ul>
+  <% @recipe.ingredients.each do |ingredient| %>
+    <li><%= ingredient.quantity %> - <%= ingredient.food.unique_name %></li>
+  <% end %>
+</ul>
+

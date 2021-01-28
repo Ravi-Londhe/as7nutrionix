@@ -1,0 +1,13 @@
+<h1>Foods</h1>
+
+<p><%= link_to 'Create a New Food', new_food_path %></p>
+
+<p>
+  Sort Foods: 
+  <%= link_to 'Ascending', foods_path(sort: "asc"), class: "foods-sort" %> |
+  <%= link_to 'Descending', foods_path(sort: "desc"), class: "foods-sort" %>
+</p>
+
+<div id="foods-index">
+  <%= render partial: 'foods', collection: @foods || 'No foods are available.' %>
+</div>

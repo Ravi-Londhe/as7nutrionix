@@ -1,0 +1,81 @@
+<h1 id="log-show-date">Log Date: <%= date(@log.log_date) %></h1>
+
+<div id="log-show-nav">
+  <div id="log-show-manage">
+    <p>
+    <%= link_to 'Edit Log', edit_user_log_path(current_user, @log) \
+      if policy(@log).edit? %>
+    </p>
+
+    <p>
+    <%= link_to 'Delete Log', user_log_path(current_user, @log), method: :delete,
+      data: { confirm: 'Are you sure?' } if policy(@log).destroy? %>
+    </p>
+  </div>
+
+  <div id="log-history">
+    <p id="prev-log">
+    <% if @log.prev(current_user) %>
+      <%= link_to "Previous Log", 
+        user_log_path(current_user, 
+        @log.prev(current_user)) %>
+    <% end %>
+    </p>
+    <p id="next-log">
+    <% if @log.next(current_user) %>
+      <%= link_to "Next Log", 
+        user_log_path(current_user, 
+        @log.next(current_user)) %>
+    <% end %>
+    </p>
+  </div>
+</div>
+
+<div id="log-show-chart">
+  <h2>Macronutrients</h2>
+  <%= pie_chart @log.total_stats_for_chart %>
+</div>
+
+<div id="log-show-form">
+  <h2>Add a New Log Entry</h2>
+  <%= form_for [@current_user, @log] do |f| %>
+    <div class='inline-fields'>
+      <%= f.fields_for :entries, @log.entries.build do |entries| %>
+        <%= entries.label :quantity %>
+        <%= entries.number_field :quantity, min: 0.00, step: 0.25 %>
+
+        <%= entries.label :recipe_id, 'Recipe' %>
+        <%= entries.collection_select :recipe_id, @recipes, :id, :title, prompt: true %>
+
+        <%= entries.label :category %>
+        <%= entries.collection_select :category, Entry.categories, :first, :first %>
+      <% end %>
+      <%= f.submit "Add Entry" %>
+    </div>
+  <% end %>
+</div>
+
+<div id="log-show-data">
+  <h2>Total Nutrition as Logged</h2>
+  <table class='tables recipe'>
+    <thead>
+      <tr>
+        <th>Recipe</th>
+        <th>Calories</th>
+        <th>Carbohydrate</th>
+        <th>Protein</th>
+        <th>Fat</th>
+      </tr>
+    </thead>
+    <tbody id="log-show-stats-table-body">
+      <%= render partial: 'stats', collection: @log.per_recipe_stats %>
+      <tr class='total'>
+        <td>Day's Total</td>
+        <td class='data'><%= num @log.total_stats.total_calories %></td>
+        <td class='data'><%= num @log.total_stats.total_carbs %></td>
+        <td class='data'><%= num @log.total_stats.total_protein %></td>
+        <td class='data'><%= num @log.total_stats.total_fat %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
